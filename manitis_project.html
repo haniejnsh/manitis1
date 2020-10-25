@@ -1,0 +1,132 @@
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<style>
+			#tab
+			{
+				border:1px solid blue;
+				width:650px;
+				height:280px;
+				border-collapse:collapse;
+				text-align:center;
+			}
+			tr td:first-child
+			{
+				width:100px;
+				border-top:1px solid blue;
+			}
+			tr td:nth-child(2)
+			{
+				width:250px;
+				border-top:1px solid blue;
+			}
+			tr td:last-child
+			{
+				width:300px;
+				border-top:1px solid blue;
+			}
+			#report
+			{
+				position:relative;
+				top:50px;
+				left:30px;
+				border:1px solid black;
+				width:300px;
+				padding:10px;
+			}
+		</style>
+		
+		<script type="text/javascript">
+		function evaluation()
+		{
+			var id1 = document.getElementById("pass").value
+			var name1 = document.getElementById("name").value
+			var family1 = document.getElementById("family").value
+			var age1 = document.getElementById("age").value
+			var email1 = document.getElementById("mail").value
+			var mobile1 = document.getElementById("mobile").value
+			var file1 = document.getElementById("rezume").value
+			
+			if (
+			(!/\w/.test(name1)) && 
+			(!/\w/.test(family1))  && 
+			(!/\D/.test(age1)) && 
+			(9 < eval(age1)) && 
+			(eval(age1) < 101) &&
+			(/[@]/.test(email1)) && 
+			(!/\D/.test(mobile1)) && 
+			(/\d{11,11}/.test(mobile1))&&
+			(eval(mobile1) < 10000000000)&&
+			(/.pdf$/.test(file1)) &&
+			(id1 != "") && 
+			(name1 != "") && 
+			(family1 != "") &&
+			(age1 != "") && 
+			(email1 != "") && 
+			(mobile1 != "") && 
+			(file1 != "")  
+			)
+			{	
+				document.getElementById("report").innerHTML = "name : "+name1+ "</br>family : "+family1+ "</br>age : "+age1+ "</br>email : "+email1+"</br>mobile : "+mobile1+" : "
+			}
+			else {document.getElementById("report").innerHTML ="Your information is not valid"}
+			
+		}
+		</script>
+	</head>
+	<body>
+		
+		<form method="" action="" >
+			<table id="tab">
+				<caption> Profile form </caption>
+				<thead>
+					<tr>
+						<th>parameter</th>
+						<th>value</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tr>
+					<td>id</td>
+					<td><input type="password" id="pass" /></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>name</td>
+					<td><input type="text" id="name" /></td>
+					<td>با حروف فارسی وارد کنید</td>
+				</tr>
+				<tr>
+					<td>family</td>
+					<td><input type="text" id="family" /></td>
+					<td>با حروف فارسی وارد کنید</td>
+				</tr>
+				<tr>
+					<td>age</td>
+					<td><input type="text" id="age" /></td>
+					<td>عدد بین 10 تا 100 وارد کنید</td>
+				</tr>
+				<tr>
+					<td>email</td>
+					<td><input type="text" id="mail" /></td>
+					<td>پترن استاندارد ایمیل را وارد کنید</td>
+				</tr>
+				<tr>
+					<td>mobile</td>
+					<td><input type="text" id="mobile" pattern="[0-9]{11,11}"/></td>
+					<td>یازده رقم و شروع با صفر</td>
+				</tr>
+				<tr>
+					<td>file</td>
+					<td><input type="file" id="rezume" /></td>
+					<td>فقط فایل pdf</td>
+				</tr>
+			</table>
+			<input type="button" value="try it out" onclick="evaluation()" style="width:130px;height:30px;position:relative;top:10px;left:500px;"/>
+		</form>
+		<div id="report" >
+			<p>Enter your information carefully</p>
+		</div>
+
+	</body>
+</html>
